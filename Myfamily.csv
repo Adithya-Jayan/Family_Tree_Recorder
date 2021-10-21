@@ -1,5 +1,14 @@
 Sl_No,Name,Sex,Mother,Father,Children,Spouse
 0,Adithya Jayan,m,1,2,[],None
 1,Mini,f,None,None,"[0, 3]",2
-2,Jayan,m,None,None,"[0, 3]",1
+2,Jayan,m,4,5,"[0, 3]",1
 3,Anirudh,m,1,2,[],None
+4,Thangamma,f,None,None,"[2, 6]",5
+5,Gopinathan,m,None,None,"[2, 6]",4
+6,Shobhana,f,4,5,[8],7
+7,Mani,m,None,None,[8],6
+8,Rajesh,m,6,7,"[10, 11, 12]",9
+9,Deepthi,f,None,None,"[10, 11, 12]",8
+10,Meenakshi,f,9,8,[],None
+11,Mithuna,f,9,8,[],None
+12,Maheshwar,m,9,8,[],None
