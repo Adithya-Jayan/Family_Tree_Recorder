@@ -1,0 +1,92 @@
+@import
+url('https://fonts.googleapis.com/css?family=Raleway:300,400,700,900');
+
+*{
+	box-sizing: border-box;
+	/*transition: all ease-in-out 50ms;*/
+}
+
+body {
+	margin:0;
+	font-family: 'Raleway',sans-serif;
+	text-align:center;
+}
+
+img {
+	max-width:100%;
+	height:auto;
+}
+
+.clearfix::after,
+section::after,
+footer::after{
+	content: '';
+	display: block;
+	clear: both;
+}
+
+/*Node work area
+**************************/
+
+div.workArea {
+    background-color: burlywood;
+    border-style: solid;
+    border-color: black;
+    border-width: 0.2rem;
+    border-radius: 0.5rem;
+    width:95%;
+    height: 30rem;
+    margin: auto;
+}
+
+div.nodeBox {
+    height: 10rem;
+    width: 8rem;
+    background-color: white;
+    border-radius: 0.2rem;
+}
+
+.ConnectionPoint_out {
+    height: 1rem;
+    width: 1rem;
+    position: absolute;
+    border-radius: 0.2rem;
+}
+
+.pos1{
+    left:-1rem;
+    top: 2rem;
+    background-color: orangered;
+}
+
+.pos2{
+    right:-1rem;
+    top: 2rem;
+    background-color: orangered;
+}
+
+.pos3{
+    left:-1rem;
+    top: 5rem;
+    background-color: yellow;
+}
+
+.pos4{
+    right:-1rem;
+    top: 5rem;
+    background-color: yellow;
+}
+
+.pos5{
+    left:50%;
+    top: -0.5rem;
+    transform: translate(-50%, -50%);
+    background-color: greenyellow;
+}
+
+.pos6{
+    left:50%;
+    top: 10.5rem;
+    transform: translate(-50%, -50%);
+    background-color: greenyellow;
+}
