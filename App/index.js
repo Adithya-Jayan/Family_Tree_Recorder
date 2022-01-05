@@ -1,22 +1,34 @@
-// This is my first javascript code
-console.log('Hello World');
 
-let person = {
-    name: 'Mosh',
-    age: 30
-};
+//Spawn new nodes on click script
+var addNode = function(){
+    var ok = true;
+ 
+    if (ok === true) {
+        var original = document.getElementsByClassName('nodeBox')[0];
+        var clone = original.cloneNode(true);
 
-person.name = 'John';
-person['age'] = 15;
-console.log(person);
+        console.log(clone.style);
+        clone.style.transform = "translate(0px, 0px)";
+        console.log("cloning");
 
-let arrayOfPeople = ['yes'];
-arrayOfPeople[3] = false;
-arrayOfPeople[7] = "fire";
-arrayOfPeople[1] = person;
+        document.getElementsByClassName('workArea')[0].appendChild(clone);
+        
+        //make newly added node draggable
+        new PlainDraggable(clone);
 
-console.log(arrayOfPeople);
-console.log( true + 6 + 'haha');
-typeof(arrayOfPeople);
+    }
+ }
+ 
 
-draggable = new PlainDraggable(document.getElementById('draggable'));
+ window.addEventListener('load', function() { 
+    //Make initially present individual nodes dragable
+    node_list = document.getElementsByClassName('draggable');
+    for (let i=0; i<node_list.length; i++)
+    {
+        new PlainDraggable(node_list[i]);
+    }
+  });
+
+
+document.getElementById("addNewNode").addEventListener('click', addNode);
+

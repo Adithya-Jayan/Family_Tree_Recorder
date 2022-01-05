@@ -44,6 +44,9 @@ div.nodeBox {
     width: 8rem;
     background-color: white;
     border-radius: 0.2rem;
+    margin: 0;
+    padding: 0;
+    position: absolute;
 }
 
 .ConnectionPoint_out {
