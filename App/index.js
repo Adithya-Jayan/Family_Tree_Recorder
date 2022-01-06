@@ -52,34 +52,57 @@ function addNode(new_pos){
 
 // Connects nodes in memory
  function connectNodes(){
+
     for(let i =0; i< connections.length; i++){
         a = document.getElementById('node_'+connections[i].start).getElementsByClassName("pos6")[0];
         b = document.getElementById('node_'+connections[i].end).getElementsByClassName("pos5")[0];
         connectionLines[i] = new LeaderLine(a,b);
+        
+        line_element = document.querySelector('.leader-line:last-of-type');
+        document.getElementById('lineWrapper').appendChild(line_element);
     }
  }
 
  //Updates connection Lines
  function updateLines(i){
-    for(let j=0; j <connections.length;j++)
-                {
-                    if((connections[j].start == i) || (connections[j].end == i))
-                    {
-                        connectionLines[j].position();
-                    }
-                }
+     
+    fixPosition();
+
+    if( isNaN(i)){
+        for(let j=0; j <connections.length;j++){
+            connectionLines[j].position();
+        }
+    }
+    else{
+        for(let j=0; j <connections.length;j++)
+        {
+            if((connections[j].start == i) || (connections[j].end == i))
+            {
+                connectionLines[j].position();
+            }
+        }
+    }
+    
  }
 
 
+ function fixPosition() {
+    elmWrapper = document.getElementById('lineWrapper')
+    elmWrapper.style.transform = '';
+    var rectWrapper = elmWrapper.getBoundingClientRect();
+
+    // Move to the origin of coordinates to that of the document
+    elmWrapper.style.transform = 'translate(' +
+      ((rectWrapper.left + scrollX) * -1) + 'px, ' +
+      ((rectWrapper.top + scrollY) * -1) + 'px)';
+  }
+  
 
  //Main function
  window.addEventListener('load', function() { 
-
     initNodes();
     connectNodes();
-
   });
-
 
 document.getElementById("addNewNode").addEventListener('click', addNode);
 

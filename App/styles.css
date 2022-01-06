@@ -41,9 +41,15 @@ div.canvas {
     overflow: auto;
    }
 
-   div.inner{
-        position: relative;
-        height: auto;
+div.inner{
+    position: relative;
+    height: auto;
+   }
+
+#lineWrapper{
+    width: 0;
+    height: 0;
+    position: relative;
    }
 
 div.workArea {
