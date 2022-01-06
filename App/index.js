@@ -9,8 +9,9 @@ var addNode = function(i){
     var ok = true;
  
     if (ok === true) {
-        var original = document.getElementsByClassName('nodeBox')[0];
+        var original = document.getElementsByClassName('nodeBoxTemplate')[0];
         var clone = original.cloneNode(true);
+        clone.classList.replace("nodeBoxTemplate","nodeBox")
         clone.classList.remove("hidden");
 
         if(typeof(i) != undefined){
@@ -57,7 +58,7 @@ var addNode = function(i){
             onMove: function(){ 
                 for(let j=0; j <connections.length;j++)
                 {
-                    console.log(connections[j].start == i + "And" + (connections[j].end == i))
+                    console.log((connections[j].start == i) + "And" + (connections[j].end == i))
                     if((connections[j].start == i) || (connections[j].end == i))
                     {
                         console.log("i is " + i + "Start is " + connections[j].start);
