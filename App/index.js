@@ -19,18 +19,23 @@ function addNode(new_pos){
         }
         clone.id = "node_" + new_pos;
 
-        clone.style.transform = "translate(0px, 0px)";
+        //clone.style.transform = "translate(0px, 0px)";
         console.log("cloning ,  Adding node:"+ new_pos);
 
+        //document.getElementsByClassName('workArea')[0].insertBefore(clone,original);        
         document.getElementsByClassName('workArea')[0].appendChild(clone);
         
         //make newly added node draggable
-        new PlainDraggable(clone,
+        let draggable = new PlainDraggable(clone,
             {
             onMove: function() { updateLines(new_pos); }
             }
             );
 
+        draggable.autoScroll = {
+            target: document.getElementsByClassName("canvas")[0]
+            };
+            
         return clone;
     }
  }
