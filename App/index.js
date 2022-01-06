@@ -43,18 +43,6 @@ function addNode(new_pos){
     for(let i=0; i< numNodes ;i++){
         addNode(i);
      }
-
-
-    //Make spawned nodes dragable
-    node_list = document.getElementsByClassName('nodeBox');
-    for (let i=0; i< node_list.length; i++)
-    {
-        new PlainDraggable(node_list[i], 
-            {
-            onMove: function(){updateLines(i);}
-            }
-            );
-    }
  }
 
 // Connects nodes in memory

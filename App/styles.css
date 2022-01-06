@@ -37,6 +37,7 @@ div.workArea {
     width:95%;
     height: 30rem;
     margin: auto;
+    overflow: scroll;
 }
 
 div.nodeBox {
