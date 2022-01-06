@@ -93,3 +93,9 @@ div.nodeBox {
     transform: translate(-50%, -50%);
     background-color: greenyellow;
 }
+
+/* Hide templates*/
+
+.hidden{
+    display: none;
+}

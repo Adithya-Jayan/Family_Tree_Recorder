@@ -11,9 +11,15 @@ var addNode = function(i){
     if (ok === true) {
         var original = document.getElementsByClassName('nodeBox')[0];
         var clone = original.cloneNode(true);
+        clone.classList.remove("hidden");
 
         if(typeof(i) != undefined){
             clone.id = "node_" + i; 
+        }
+        else{
+            let new_pos = document.getElementsByClassName("nodeBox").length;
+            console.log(new_pos);
+            clone.id = "node_" + new_pos;
         }
 
         clone.style.transform = "translate(0px, 0px)";
@@ -48,7 +54,18 @@ var addNode = function(i){
     {
         new PlainDraggable(node_list[i], 
             {
-            onMove: function() { connectNodes(i); }
+            onMove: function(){ 
+                for(let j=0; j <connections.length;j++)
+                {
+                    console.log(connections[j].start == i + "And" + (connections[j].end == i))
+                    if((connections[j].start == i) || (connections[j].end == i))
+                    {
+                        console.log("i is " + i + "Start is " + connections[j].start);
+                        console.log("i is " + i + "end is " + connections[j].end);
+                        connectionLines[j].position();
+                    }
+                }
+            }
             }
             );
     }
@@ -65,13 +82,7 @@ var addNode = function(i){
 
  //Updates connection Lines
  function updateLines(num){
-    for(let i=0; i <connections.length;i++)
-    {
-        if((connectNodes[i].start == i) || (connectNodes[i].end == i))
-        {
-            connectionLines[i].position();
-        }
-    }
+    
  }
 
 
@@ -81,11 +92,6 @@ var addNode = function(i){
 
     initNodes();
     connectNodes();
-
-    line = new LeaderLine(
-        document.getElementById('e1'),
-        document.getElementById('e2')
-      );
 
   });
 
