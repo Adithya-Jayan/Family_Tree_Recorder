@@ -5,7 +5,7 @@ let connections = [{start:0,end:1}]
 let connectionLines = []
 
 //Spawn new nodes on click script
-var addNode = function(i){
+function addNode(new_pos){
     var ok = true;
  
     if (ok === true) {
@@ -14,24 +14,20 @@ var addNode = function(i){
         clone.classList.replace("nodeBoxTemplate","nodeBox")
         clone.classList.remove("hidden");
 
-        if(typeof(i) != undefined){
-            clone.id = "node_" + i; 
+        if(isNaN(new_pos)){
+            new_pos = document.getElementsByClassName("nodeBox").length;
         }
-        else{
-            let new_pos = document.getElementsByClassName("nodeBox").length;
-            console.log(new_pos);
-            clone.id = "node_" + new_pos;
-        }
+        clone.id = "node_" + new_pos;
 
         clone.style.transform = "translate(0px, 0px)";
-        console.log("cloning");
+        console.log("cloning ,  Adding node:"+ new_pos);
 
         document.getElementsByClassName('workArea')[0].appendChild(clone);
         
         //make newly added node draggable
         new PlainDraggable(clone,
             {
-            onMove: function() { line.position(); }
+            onMove: function() { updateLines(new_pos); }
             }
             );
 
@@ -55,18 +51,7 @@ var addNode = function(i){
     {
         new PlainDraggable(node_list[i], 
             {
-            onMove: function(){ 
-                for(let j=0; j <connections.length;j++)
-                {
-                    console.log((connections[j].start == i) + "And" + (connections[j].end == i))
-                    if((connections[j].start == i) || (connections[j].end == i))
-                    {
-                        console.log("i is " + i + "Start is " + connections[j].start);
-                        console.log("i is " + i + "end is " + connections[j].end);
-                        connectionLines[j].position();
-                    }
-                }
-            }
+            onMove: function(){updateLines(i);}
             }
             );
     }
@@ -82,8 +67,14 @@ var addNode = function(i){
  }
 
  //Updates connection Lines
- function updateLines(num){
-    
+ function updateLines(i){
+    for(let j=0; j <connections.length;j++)
+                {
+                    if((connections[j].start == i) || (connections[j].end == i))
+                    {
+                        connectionLines[j].position();
+                    }
+                }
  }
 
 
