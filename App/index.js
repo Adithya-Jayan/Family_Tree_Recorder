@@ -60,8 +60,8 @@ function addNode(new_pos){
 // Connects nodes in memory
  function connectNodes(){
     for(let i =0; i< connections.length; i++){
-        a = document.getElementById('node_'+connections[i].start);
-        b = document.getElementById('node_'+connections[i].end);
+        a = document.getElementById('node_'+connections[i].start).getElementsByClassName("pos6")[0];
+        b = document.getElementById('node_'+connections[i].end).getElementsByClassName("pos5")[0];
         connectionLines[i] = new LeaderLine(a,b);
     }
  }
