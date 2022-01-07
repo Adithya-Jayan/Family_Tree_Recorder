@@ -5,7 +5,7 @@ let connections = [{start:0,end:1}]
 let connectionLines = []
 
 //Spawn new nodes on click script
-function addNode(new_pos){
+function addNode(){
     var ok = true;
  
     if (ok === true) {
@@ -14,12 +14,11 @@ function addNode(new_pos){
         clone.classList.replace("nodeBoxTemplate","nodeBox")
         clone.classList.remove("hidden");
 
-        if(isNaN(new_pos)){
-            new_pos = document.getElementsByClassName("nodeBox").length;
-        }
+        let new_pos = document.getElementsByClassName("nodeBox").length;
+        
         clone.id = "node_" + new_pos;
 
-        //clone.style.transform = "translate(0px, 0px)";
+        clone.style.transform = "translate(0px, 0px)";
         console.log("cloning ,  Adding node:"+ new_pos);
 
         //document.getElementsByClassName('workArea')[0].insertBefore(clone,original);        
@@ -35,6 +34,13 @@ function addNode(new_pos){
         draggable.autoScroll = {
             target: document.getElementsByClassName("canvas")[0]
             };
+
+        document.getElementsByClassName("canvas")[0].scroll(
+            {
+                top: 0,
+                left:0,
+                behavior: "smooth"
+            });
             
         return clone;
     }
@@ -46,7 +52,7 @@ function addNode(new_pos){
 
     //Spawn them
     for(let i=0; i< numNodes ;i++){
-        addNode(i);
+        addNode();
      }
  }
 

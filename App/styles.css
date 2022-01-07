@@ -65,7 +65,7 @@ div.nodeBox {
     border-radius: 0.2rem;
     margin: 0;
     padding: 0;
-    position: relative;
+    position: absolute;
 }
 
 .ConnectionPoint_out {
