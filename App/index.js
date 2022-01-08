@@ -18,7 +18,7 @@ function addNode(){
         
         clone.id = "node_" + new_pos;
 
-        clone.style.transform = "translate(0px, 0px)";
+        //clone.style.transform = "translate(0px, 0px)";
         console.log("cloning ,  Adding node:"+ new_pos);
 
         //document.getElementsByClassName('workArea')[0].insertBefore(clone,original);        
@@ -60,8 +60,8 @@ function addNode(){
  function connectNodes(){
 
     for(let i =0; i< connections.length; i++){
-        a = document.getElementById('node_'+connections[i].start).getElementsByClassName("pos6")[0];
-        b = document.getElementById('node_'+connections[i].end).getElementsByClassName("pos5")[0];
+        a = document.getElementById('node_'+connections[i].start).getElementsByClassName("top")[0];
+        b = document.getElementById('node_'+connections[i].end).getElementsByClassName("bottom")[0];
         connectionLines[i] = new LeaderLine(a,b);
         
         line_element = document.querySelector('.leader-line:last-of-type');

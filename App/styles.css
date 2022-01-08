@@ -52,13 +52,11 @@ div.inner{
     position: relative;
    }
 
-div.workArea {
+.workArea {
     background-color: burlywood;
-    width: 100em;
-    height: 100em;
 }
 
-div.nodeBox {
+.nodeBox {
     height: 10rem;
     width: 8rem;
     background-color: white;
