@@ -22,17 +22,18 @@
     <div class="canvas" onscroll='updateLines();'>
         <div class="inner">
             <div class="workArea">
-                <div class="nodeBoxTemplate draggable hidden" style="transform: translate(200px,200px);">
+                <div class="nodeBoxTemplate hidden" style="transform: translate(200px,200px);">
                     Drag me
-                    <div id = "e1" class="ConnectionPoint_out pos1"></div>
-                    <div class="ConnectionPoint_out pos2"></div>
+                    <div class="ConnectionPoint_out pos1"></div>
+                    <div class="ConnectionPoint_out pos2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
-                    <div class="ConnectionPoint_out pos3"></div>
-                    <div class="ConnectionPoint_out pos4"></div>
+                    <div class="ConnectionPoint_out pos3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div class="ConnectionPoint_out pos4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
-                    <div class="ConnectionPoint_out pos5"></div>
-                    <div id = "e2" class="ConnectionPoint_out pos6"></div>
+                    <div class="ConnectionPoint_out pos5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div class="ConnectionPoint_out pos6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 </div>
+                <div style="background-color: green; position: absolute;" id = "dummy" draggable="true" ondragstart="drag(event)">YOYO</div>
             </div>
         </div>
         <div id="lineWrapper"></div>

@@ -56,7 +56,7 @@ function addNode(){
      }
  }
 
-// Connects nodes in memory
+// Connects nodes (According to data stored in memory)
  function connectNodes(){
 
     for(let i =0; i< connections.length; i++){
@@ -91,7 +91,7 @@ function addNode(){
     
  }
 
-
+//Fixes line positions inside the scrollable section
  function fixPosition() {
     elmWrapper = document.getElementById('lineWrapper')
     elmWrapper.style.transform = '';
@@ -102,7 +102,23 @@ function addNode(){
       ((rectWrapper.left + scrollX) * -1) + 'px, ' +
       ((rectWrapper.top + scrollY) * -1) + 'px)';
   }
+
+
+  //drag to connect functionality
+  function allowDrop(ev) {
+    ev.preventDefault();
+  }
   
+  function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+  }
+  
+  function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+  }
+
 
  //Main function
  window.addEventListener('load', function() { 
