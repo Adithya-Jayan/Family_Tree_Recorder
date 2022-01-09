@@ -2,7 +2,10 @@
 let numNodes = 3;
 let connections = [{start:0,end:1}]
 
+const maxZoom = 5 //times
+
 let connectionLines = []
+let draggableNodes = []
 
 //Spawn new nodes on click script
 function addNode(){
@@ -25,15 +28,18 @@ function addNode(){
         document.getElementsByClassName('workArea')[0].appendChild(clone);
         
         //make newly added node draggable
-        let draggable = new PlainDraggable(clone,
+        draggableNodes[draggableNodes.length] = new PlainDraggable(clone,
             {
             onMove: function() { updateLines(new_pos); }
             }
             );
 
-        draggable.autoScroll = {
+        draggableNodes[draggableNodes.length - 1].autoScroll = {
             target: document.getElementsByClassName("canvas")[0]
             };
+
+        draggableNodes[draggableNodes.length - 1].containment = document.getElementsByClassName("workArea")[0];
+
 
         document.getElementsByClassName("canvas")[0].scroll(
             {
@@ -60,12 +66,20 @@ function addNode(){
  function connectNodes(){
 
     for(let i =0; i< connections.length; i++){
-        a = document.getElementById('node_'+connections[i].start).getElementsByClassName("top")[0];
-        b = document.getElementById('node_'+connections[i].end).getElementsByClassName("bottom")[0];
+        a = document.getElementById('node_'+connections[i].start).getElementsByClassName("bottom")[0];
+        b = document.getElementById('node_'+connections[i].end).getElementsByClassName("top")[0];
         connectionLines[i] = new LeaderLine(a,b);
-        
+
+        connectionLines[i].setOptions({startSocket: 'bottom', endSocket: 'top'});
+ 
         line_element = document.querySelector('.leader-line:last-of-type');
         document.getElementById('lineWrapper').appendChild(line_element);
+    }
+ }
+
+ function updateNodePositions(){
+    for(let i=0;i<draggableNodes.length; i++){
+        draggableNodes[i].position();
     }
  }
 
@@ -119,11 +133,30 @@ function addNode(){
     ev.target.appendChild(document.getElementById(data));
   }
 
+function activateSlider(){
+    //Zoom slider control
+    let slider = document.getElementById("myRange");
+    let output = document.getElementById("SliderVal");
+    const svgZoom = document.getElementsByClassName("workArea")[0];
+    output.innerHTML = slider.value; // Display the default slider value
 
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+        svgZoom.style.transform = `scale(${1 + (maxZoom-1)*(this.value -1) / 99})`;
+        updateNodePositions();
+        updateLines();
+    }
+
+}
+
+  
  //Main function
  window.addEventListener('load', function() { 
     initNodes();
     connectNodes();
+    activateSlider();
+    updateLines();
   });
 
 document.getElementById("addNewNode").addEventListener('click', addNode);
